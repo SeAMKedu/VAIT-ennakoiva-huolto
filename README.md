@@ -1,3 +1,7 @@
+![Älykkäät teknologiat](https://storage.googleapis.com/seamk-production/2022/04/2b1d63e0-alykkaat-teknologiat_highres_2022-768x336.jpg)
+![EPLiitto logo](https://github.com/SeAMKedu/VAIT-tekoaly-rag/blob/main/kuvat/EPLiitto_logo_vaaka_vari.jpg)
+![EU osarahoitus](https://github.com/SeAMKedu/VAIT-tekoaly-rag/blob/main/kuvat/FI_Co-fundedbytheEU_RGB_POS.png)
+
 # Ohjelmointi
 
 ## Python-ohjelmoinnin perusteet automaatiotekniikan opiskelijoille
