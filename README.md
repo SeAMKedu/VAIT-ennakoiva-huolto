@@ -100,7 +100,7 @@ uv pip install -r requirements.txt
 python -m venv .venv && source .venv/bin/activate  # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 
-##Python-ohjelman käyttö
+## Python-ohjelman käyttö
 Sijoita vibration_data_kaikki.csv juurikansioon. Vähintään sarake time (ISO-aikaleima) sekä akselit x, y, z.
 
 Avaa VS Code / terminaali, aktivoi venv.
@@ -127,26 +127,26 @@ Parametrien säätö
 - threshold (esim. 0.07–0.15) – todennäköisyysraja tapahtumalle
 - cooldown_period (esim. 6) – minimietäisyys peräkkäisten tapahtumien välillä (minuutteina, koska ikkuna on 1T)
 
-##Havaitut virheet ja ongelmatilanteet
+## Havaitut virheet ja ongelmatilanteet
 - CSV puuttuu → tulostuu virheilmoitus ja ohjelma poistuu.
 - Aikaleimat: varmista, että time parsitaan oikein ja aikavyöhykkeisyys on yhdenmukainen.
 - NaN/inf ominaisuuksissa → koodi pudottaa puuttuvat/äärettömät ennen mallia.
 
-##Vaatimukset
+## Vaatimukset
 - Python 3.9–3.13
 - Kirjastot: pandas, numpy, scikit-learn, matplotlib
 - Datan sarakevaatimukset: time, x, y, z
 - Tunnetut vaihtolistat (part_changes) annetaan koodissa aikaleimoina (UTC, tai lokalisoidaan tz_localize('UTC')).
 
-##Tulokset
+## Tulokset
 - Tulostuu tarkkuus-, recall- ja F1-arviot testijaksolta.
 - Kuvissa näkyy todellisten ja ennustettujen vaihtohetkien kohdistuminen.
 - Oletusasetuksilla demo antaa kunnossapidolle alkutason hälytyskelpoisen signaalin; parannettavissa datan laadulla, ominaisuuksien laajennuksilla (esim. spektriominaisuudet), malli- ja raja-arvo-säädöillä.
 
-#Lisenssi
+# Lisenssi
 Dokumentaatio ja koodi julkaistaan MIT-lisenssillä (sama lisenssilinja kuin hankkeen muissa demoissa).
 
-##Tekijät
+## Tekijät
 Teemu Virtanen (koodi ja dokumentaatio)
 
 vAI:lla tuottavuutta? -hanketiimi / SEAMK
