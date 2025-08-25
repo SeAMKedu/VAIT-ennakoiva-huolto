@@ -2,7 +2,7 @@
 ![EPLiitto logo](https://github.com/SeAMKedu/VAIT-tekoaly-rag/blob/main/kuvat/EPLiitto_logo_vaaka_vari.jpg)
 ![EU osarahoitus](https://github.com/SeAMKedu/VAIT-tekoaly-rag/blob/main/kuvat/FI_Co-fundedbytheEU_RGB_POS.png)
 
-# Tärinädatasta teränvaihdon ennustaminen (RandomForest)
+# Tärinädatasta teränvaihdon tai muun kuluvan osan vaihtoajankohdan ennustaminen (RandomForest)
 
 Paikallisesti ajettava Python-pilotti, joka ryhmittelee tärinämittausten aikajonoa minuutti-ikkunoihin, laskee tilasto- ja aikaominaisuuksia (lagit, liukuvat ikkunat, muutosnopeus), opettaa **RandomForestClassifier**-mallin ja ennustaa **teränvaihdon todennäköisyyttä** tulevassa datassa. Koodi piirtää sekä akselikohtaiset tärinän keskihajonnat että vaihdon todennäköisyysajan­jatkumon ja vertaa ennusteita tunnettuihin vaihtohetkiin. Tämä pilotti tehtiin osana vAI:lla tuottavuutta? -hanketta. Tämä pilotti ei tue livedataa, vaan se jätettiin jatkokehitys-listalle. Pilotin tarkoituksena oli pilotoida sitä, onko mahdollista ennustaa teränvaihtoa laitteen kyljestä kerätyllä tärinädatalla ja tuotannosta kerätyn teränvaihdon ajoitusdatasta. Koodi on luotu nimenomaan pilottia ajatellen, eli se ei käytä välttämättä parhaita käytäntöjä, vaan tarkoituksena on näyttää tekoälyn mahdollisia käyttötapoja ja minkälaisia tuloksia voi nykyteknologialla saada aikaan. 
 
@@ -146,7 +146,7 @@ Parametrien säätö
 # Lisenssi
 Dokumentaatio ja koodi julkaistaan MIT-lisenssillä (sama lisenssilinja kuin hankkeen muissa demoissa).
 
-## Tekijät
+# Tekijät
 Teemu Virtanen (koodi ja dokumentaatio)
 
 vAI:lla tuottavuutta? -hanketiimi / SEAMK
