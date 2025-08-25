@@ -6,6 +6,8 @@
 
 Paikallisesti ajettava Python-pilotti, joka ryhmittelee tärinämittausten aikajonoa minuutti-ikkunoihin, laskee tilasto- ja aikaominaisuuksia (lagit, liukuvat ikkunat, muutosnopeus), opettaa **RandomForestClassifier**-mallin ja ennustaa **teränvaihdon todennäköisyyttä** tulevassa datassa. Koodi piirtää sekä akselikohtaiset tärinän keskihajonnat että vaihdon todennäköisyysajan­jatkumon ja vertaa ennusteita tunnettuihin vaihtohetkiin. Tämä pilotti tehtiin osana vAI:lla tuottavuutta? -hanketta. Tämä pilotti ei tue livedataa, vaan se jätettiin jatkokehitys-listalle. Pilotin tarkoituksena oli pilotoida sitä, onko mahdollista ennustaa teränvaihtoa laitteen kyljestä kerätyllä tärinädatalla ja tuotannosta kerätyn teränvaihdon ajoitusdatasta. Koodi on luotu nimenomaan pilottia ajatellen, eli se ei käytä välttämättä parhaita käytäntöjä, vaan tarkoituksena on näyttää tekoälyn mahdollisia käyttötapoja ja minkälaisia tuloksia voi nykyteknologialla saada aikaan. 
 
+GitHubissa oleva esimerkki .csv -tiedosto näyttää käytetyn materiaalin ulkomuodon. Pilotissa käytettiin n. kolmen viikon ajalta kerättyä ei-yhtäjaksoista tärinädataa. Yksittäisiä rivejä oli siis vähintään satojatuhansia.
+
 Tärinädata kerättiin koneen ulkokuoreen asetetulla tärinäanturilla. 
 
 Sovelluksia joita käytetään Windows-/Linux-tietokoneella:
