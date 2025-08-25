@@ -4,7 +4,9 @@
 
 # Tärinädatasta teränvaihdon ennustaminen (RandomForest)
 
-Paikallisesti ajettava Python-pilotti, joka ryhmittelee tärinämittausten aikajonoa minuutti-ikkunoihin, laskee tilasto- ja aikaominaisuuksia (lagit, liukuvat ikkunat, muutosnopeus), opettaa **RandomForestClassifier**-mallin ja ennustaa **teränvaihdon todennäköisyyttä** tulevassa datassa. Koodi piirtää sekä akselikohtaiset tärinän keskihajonnat että vaihdon todennäköisyysajan­jatkumon ja vertaa ennusteita tunnettuihin vaihtohetkiin. Tämä pilotti tehtiin osana vAI:lla tuottavuutta? -hanketta. Tämä pilotti ei tue livedataa, vaan se jätettiin jatkokehitys-listalle. Pilotin tarkoituksena oli pilotoida sitä, onko mahdollista ennustaa teränvaihtoa laitteen kyljestä kerätyllä tärinädatalla ja tuotannosta kerätyn teränvaihdon ajoitusdatasta. 
+Paikallisesti ajettava Python-pilotti, joka ryhmittelee tärinämittausten aikajonoa minuutti-ikkunoihin, laskee tilasto- ja aikaominaisuuksia (lagit, liukuvat ikkunat, muutosnopeus), opettaa **RandomForestClassifier**-mallin ja ennustaa **teränvaihdon todennäköisyyttä** tulevassa datassa. Koodi piirtää sekä akselikohtaiset tärinän keskihajonnat että vaihdon todennäköisyysajan­jatkumon ja vertaa ennusteita tunnettuihin vaihtohetkiin. Tämä pilotti tehtiin osana vAI:lla tuottavuutta? -hanketta. Tämä pilotti ei tue livedataa, vaan se jätettiin jatkokehitys-listalle. Pilotin tarkoituksena oli pilotoida sitä, onko mahdollista ennustaa teränvaihtoa laitteen kyljestä kerätyllä tärinädatalla ja tuotannosta kerätyn teränvaihdon ajoitusdatasta. Koodi on luotu nimenomaan pilottia ajatellen, eli se ei käytä välttämättä parhaita käytäntöjä, vaan tarkoituksena on näyttää tekoälyn mahdollisia käyttötapoja ja minkälaisia tuloksia voi nykyteknologialla saada aikaan. 
+
+Tärinädata kerättiin koneen ulkokuoreen asetetulla tärinäanturilla. 
 
 Sovelluksia joita käytetään Windows-/Linux-tietokoneella:
 
@@ -89,7 +91,7 @@ Tavoitemuuttuja **blade_change** syntyy merkitsemällä 0–2 h ennen tunnettuja
 
 ## Asennus (vaihtoehto A: uv)
 
-# (valinnainen) asenna uv: https://github.com/astral-sh/uv
+(valinnainen) asenna uv: https://github.com/astral-sh/uv
 uv venv
 uv pip install -r requirements.txt
 
@@ -109,53 +111,37 @@ bash
 Kopioi
 Muokkaa
 python VAIT-ennakoiva-huolto.py
+
 Konsoli tulostaa:
-
-ikkunoiden määrät ja aikavälin
-
-tärkeimmät piirteet (feature_importances)
-
-TP/FP/missed, precision/recall/F1 (testijakso)
+- ikkunoiden määrät ja aikavälin
+- tärkeimmät piirteet (feature_importances)
+- TP/FP/missed, precision/recall/F1 (testijakso)
 
 Näytölle piirtyvät kuvat:
-
-koko testijakson std + probability
-
-zoomattu ikkuna ensimmäisestä oikein osuneesta tapahtumasta
+- koko testijakson std + probability
+- zoomattu ikkuna ensimmäisestä oikein osuneesta tapahtumasta
 
 Parametrien säätö
-window_size = '1T' – resamplaus (esim. '30S', '2T')
-
-prediction_window=timedelta(hours=2) – kuinka pitkältä ajalta ennen vaihtoa merkitään 1
-
-threshold (esim. 0.07–0.15) – todennäköisyysraja tapahtumalle
-
-cooldown_period (esim. 6) – minimietäisyys peräkkäisten tapahtumien välillä (minuutteina, koska ikkuna on 1T)
+- window_size = '1T' – resamplaus (esim. '30S', '2T')
+- prediction_window=timedelta(hours=2) – kuinka pitkältä ajalta ennen vaihtoa merkitään 1
+- threshold (esim. 0.07–0.15) – todennäköisyysraja tapahtumalle
+- cooldown_period (esim. 6) – minimietäisyys peräkkäisten tapahtumien välillä (minuutteina, koska ikkuna on 1T)
 
 ##Havaitut virheet ja ongelmatilanteet
-CSV puuttuu → tulostuu virheilmoitus ja ohjelma poistuu.
-
-Aikaleimat: varmista, että time parsitaan oikein ja aikavyöhykkeisyys on yhdenmukainen.
-
-NaN/inf ominaisuuksissa → koodi pudottaa puuttuvat/äärettömät ennen mallia.
-
-Matplotlibin renderöinti: jos kuva ei aukea, kokeile vaihtaa backend tai tallenna plt.savefig(...).
+- CSV puuttuu → tulostuu virheilmoitus ja ohjelma poistuu.
+- Aikaleimat: varmista, että time parsitaan oikein ja aikavyöhykkeisyys on yhdenmukainen.
+- NaN/inf ominaisuuksissa → koodi pudottaa puuttuvat/äärettömät ennen mallia.
 
 ##Vaatimukset
-Python 3.9–3.13
-
-Kirjastot: pandas, numpy, scikit-learn, matplotlib
-
-Datan sarakevaatimukset: time, x, y, z
-
-Tunnetut vaihtolistat (part_changes) annetaan koodissa aikaleimoina (UTC, tai lokalisoidaan tz_localize('UTC')).
+- Python 3.9–3.13
+- Kirjastot: pandas, numpy, scikit-learn, matplotlib
+- Datan sarakevaatimukset: time, x, y, z
+- Tunnetut vaihtolistat (part_changes) annetaan koodissa aikaleimoina (UTC, tai lokalisoidaan tz_localize('UTC')).
 
 ##Tulokset
-Tulostuu tarkkuus-, recall- ja F1-arviot testijaksolta.
-
-Kuvissa näkyy todellisten ja ennustettujen vaihtohetkien kohdistuminen.
-
-Oletusasetuksilla demo antaa kunnossapidolle alkutason hälytyskelpoisen signaalin; parannettavissa datan laadulla, ominaisuuksien laajennuksilla (esim. spektriominaisuudet), malli- ja raja-arvo-säädöillä.
+- Tulostuu tarkkuus-, recall- ja F1-arviot testijaksolta.
+- Kuvissa näkyy todellisten ja ennustettujen vaihtohetkien kohdistuminen.
+- Oletusasetuksilla demo antaa kunnossapidolle alkutason hälytyskelpoisen signaalin; parannettavissa datan laadulla, ominaisuuksien laajennuksilla (esim. spektriominaisuudet), malli- ja raja-arvo-säädöillä.
 
 #Lisenssi
 Dokumentaatio ja koodi julkaistaan MIT-lisenssillä (sama lisenssilinja kuin hankkeen muissa demoissa).
